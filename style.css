@@ -1,0 +1,296 @@
+/* --- Global Reset & Pengaturan Dasar --- */
+:root {
+    --primary-color: #A37C63; /* Cokelat muda/Gold untuk tema elegan */
+    --secondary-color: #5D5A5A; /* Abu-abu tua untuk teks */
+    --background-color: #FAF6F4; /* Krem/Putih pudar untuk latar belakang */
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Roboto', sans-serif;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--secondary-color);
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    overflow-x: hidden; /* Mencegah scroll horizontal */
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+    margin-top: 0;
+}
+
+.hidden {
+    display: none !important; /* Untuk menyembunyikan konten utama di awal */
+}
+
+/* --- Halaman Pembuka (Cover Page) --- */
+.cover-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 1000; /* Pastikan di atas konten lain */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.cover-page h1 {
+    font-size: 1.8em;
+    margin: 10px 0 30px 0;
+    color: var(--secondary-color); /* Nama tamu agak gelap */
+}
+
+.cover-page h2 {
+    font-size: 3em;
+    margin: 5px 0 0 0;
+}
+
+.cover-page .to-text {
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+
+.cover-page .names-intro {
+    margin-bottom: 40px;
+}
+
+#open-invitation-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+#open-invitation-btn:hover {
+    background-color: #8A644D; /* Warna lebih gelap saat hover */
+}
+
+/* --- Konten Utama Undangan (Main Content) --- */
+.main-content {
+    padding: 0;
+}
+
+.section {
+    padding: 80px 20px;
+    text-align: center;
+    border-bottom: 1px solid #E0DEDC;
+}
+
+/* Bagian Hero / Pembuka */
+.hero {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.opening-quote {
+    font-style: italic;
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    font-size: 1.1em;
+}
+
+.main-title {
+    font-size: 1.5em;
+    letter-spacing: 5px;
+    margin-bottom: 10px;
+    color: var(--secondary-color);
+}
+
+.names-large {
+    font-family: var(--font-heading);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.name-groom, .name-bride {
+    font-size: 4em;
+    line-height: 1;
+    color: var(--primary-color);
+}
+
+.divider {
+    font-size: 3em;
+    margin: 0 15px;
+    color: var(--secondary-color);
+}
+
+/* Bagian Hitung Mundur */
+.countdown-info h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+    flex-wrap: wrap; /* Agar responsif di layar kecil */
+}
+
+.time-box {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 15px 10px;
+    border-radius: 8px;
+    width: 80px;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+.time-box span {
+    display: block;
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-family: var(--font-body); /* Gunakan font body yang jelas untuk angka */
+}
+
+/* Bagian Detail Acara */
+.event-details {
+    background-color: #FFF; /* Kontras dengan latar belakang utama */
+}
+
+.event-details h2 {
+    margin-bottom: 30px;
+}
+
+.event-card {
+    border: 1px solid var(--primary-color);
+    padding: 25px;
+    margin: 20px auto;
+    max-width: 350px;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.event-card h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+
+.map-link {
+    display: inline-block;
+    margin-top: 15px;
+    color: white;
+    background-color: var(--secondary-color);
+    padding: 8px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.map-link:hover {
+    background-color: var(--primary-color);
+}
+
+/* Bagian RSVP */
+.rsvp form {
+    max-width: 400px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.rsvp input[type="text"], 
+.rsvp select, 
+.rsvp textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: var(--font-body);
+}
+
+.rsvp textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.rsvp button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1.1em;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.rsvp button:hover {
+    background-color: #8A644D;
+}
+
+.status-text {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+/* Bagian Penutup */
+.closing h3 {
+    font-size: 2.5em;
+    margin-top: 30px;
+}
+
+.family-names {
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+/* --- Media Queries (Untuk Responsif) --- */
+@media (max-width: 600px) {
+    /* Penyesuaian untuk HP */
+    .section {
+        padding: 50px 15px;
+    }
+
+    .name-groom, .name-bride {
+        font-size: 3em; /* Perkecil nama untuk HP */
+    }
+
+    .divider {
+        font-size: 2em;
+    }
+    
+    .countdown-timer {
+        gap: 10px;
+    }
+
+    .time-box {
+        width: 60px;
+        padding: 10px 5px;
+        font-size: 0.8em;
+    }
+
+    .time-box span {
+        font-size: 1.8em;
+    }
+
+    .cover-page h2 {
+        font-size: 2.5em;
+    }
+}
+
