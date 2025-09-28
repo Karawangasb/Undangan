@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Koleksi Undangan</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f3f3;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+    .card-content {
+      padding: 15px;
+      text-align: center;
+    }
+    .card-content h3 {
+      margin: 10px 0;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 15px;
+      margin-top: 10px;
+      background: #007BFF;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>Koleksi Template Undangan</h1>
+  <div class="grid">
+    <div class="card">
+      <img src="https://picsum.photos/400/200?random=1" alt="Undangan v1">
+      <div class="card-content">
+        <h3>Template Undangan v1</h3>
+        <a href="v1" class="btn">Lihat Undangan</a>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://picsum.photos/400/200?random=2" alt="Undangan v2">
+      <div class="card-content">
+        <h3>Template Undangan v2</h3>
+        <a href="v2" class="btn">Lihat Undangan</a>
+      </div>
+    </div>
+    <!-- Tambahkan undangan baru di sini -->
+  </div>
+</body>
+</html>
