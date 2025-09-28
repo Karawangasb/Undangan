@@ -1,14 +1,15 @@
-// --- 1. Konfigurasi Undangan ---
+// --- 1. Konfigurasi Undangan & Variabel Global ---
 const TARGET_DATE = new Date("November 30, 2025 08:00:00").getTime(); // Sesuaikan Tanggal & Waktu Akad
 const COVER_PAGE = document.getElementById('cover-page');
 const MAIN_CONTENT = document.getElementById('main-content');
 const OPEN_BTN = document.getElementById('open-invitation-btn');
 const GUEST_NAME_ELEMENT = document.getElementById('guest-name');
+
 let countdownInterval;
 
 // --- 2. Fungsi Mengambil Nama Tamu dari URL ---
 function getGuestName() {
-    // Fungsi untuk mendapatkan parameter 'to' dari URL
+    // Mendapatkan parameter 'to' dari URL (Contoh: index.html?to=Bapak+Budi)
     const urlParams = new URLSearchParams(window.location.search);
     let guest = urlParams.get('to');
 
@@ -17,7 +18,7 @@ function getGuestName() {
         guest = decodeURIComponent(guest.replace(/\+/g, ' '));
     }
 
-    // Jika nama tamu ditemukan, tampilkan; jika tidak, gunakan placeholder
+    // Tampilkan nama tamu, default jika tidak ada parameter
     GUEST_NAME_ELEMENT.textContent = guest || "Tamu Undangan";
 }
 
@@ -49,26 +50,59 @@ function startCountdown() {
     }, 1000);
 }
 
-// --- 4. Fungsi Membuka Undangan ---
+// --- 4. Fungsi Kontrol Musik (Play/Pause) ---
+function setupMusicToggle() {
+    const audio = document.getElementById('background-music');
+    const musicToggleBtn = document.getElementById('music-toggle');
+
+    if (musicToggleBtn && audio) {
+        // Tambahkan listener untuk tombol kontrol musik
+        musicToggleBtn.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                musicToggleBtn.textContent = '⏸️'; // Ikon Pause
+            } else {
+                audio.pause();
+                musicToggleBtn.textContent = '▶️'; // Ikon Play
+            }
+        });
+    }
+}
+
+// --- 5. Fungsi Membuka Undangan ---
 function openInvitation() {
+    const audio = document.getElementById('background-music');
+    const musicToggleBtn = document.getElementById('music-toggle');
+
     // Sembunyikan cover page
     COVER_PAGE.style.display = 'none';
     
     // Tampilkan konten utama
     MAIN_CONTENT.classList.remove('hidden');
 
-    // Tambahkan efek scroll halus ke atas konten utama
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
     // Mulai hitung mundur
     startCountdown();
     
-    // Opsional: Jika Anda punya musik, mulai putar di sini
-    // const audio = document.getElementById('music');
-    // audio.play();
+    // Memutar Musik (Hanya akan diputar setelah interaksi user)
+    if (audio) {
+        audio.volume = 0.5; // Atur volume
+        audio.play().catch(error => {
+            console.log("Audio play prevented:", error);
+        });
+        
+        // Tampilkan tombol kontrol musik
+        if (musicToggleBtn) {
+            musicToggleBtn.style.display = 'block';
+            musicToggleBtn.textContent = audio.paused ? '▶️' : '⏸️';
+        }
+    }
+
+    // Scroll halus ke bagian atas konten
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// --- 5. Fungsi Penanganan RSVP (Simulasi) ---
+
+// --- 6. Fungsi Penanganan RSVP (Simulasi) ---
 function handleRSVPSubmit(event) {
     event.preventDefault(); // Mencegah form reload halaman
 
@@ -84,35 +118,33 @@ function handleRSVPSubmit(event) {
     }
 
     // --- SIMULASI PENGIRIMAN DATA ---
-    
-    // Dalam proyek nyata, data di sini akan dikirim ke server/backend 
-    // (misalnya menggunakan fetch() API ke API endpoint atau Google Sheets)
+    // Di dunia nyata, Anda akan menggunakan fetch() atau AJAX untuk mengirim data ini ke server.
     
     console.log("RSVP Submitted:");
-    console.log(`Nama: ${name}`);
-    console.log(`Kehadiran: ${status}`);
-    console.log(`Ucapan: ${message}`);
+    console.log(`Nama: ${name}, Kehadiran: ${status}, Ucapan: ${message}`);
     
     // Pesan sukses (tampilan ke user)
-    statusText.textContent = `Terima kasih, ${name}! Konfirmasi kehadiran Anda telah dicatat. Semoga doa terbaik untuk Ahmad & Siti.`;
+    statusText.textContent = `Terima kasih, ${name}! Konfirmasi Anda telah dicatat.`;
     statusText.style.color = "green";
 
     // Bersihkan form
     document.getElementById('rsvp-form').reset();
 }
 
-// --- 6. Inisialisasi Aplikasi (DOM Loaded) ---
+// --- 7. Inisialisasi Aplikasi (DOM Loaded) ---
 document.addEventListener('DOMContentLoaded', (event) => {
-    // Ambil dan tampilkan nama tamu saat halaman dimuat
+    // 1. Ambil dan tampilkan nama tamu saat halaman dimuat
     getGuestName();
 
-    // Tambahkan event listener untuk tombol Buka Undangan
+    // 2. Setup event listener untuk tombol Buka Undangan
     OPEN_BTN.addEventListener('click', openInvitation);
     
-    // Tambahkan event listener untuk form RSVP
+    // 3. Setup event listener untuk form RSVP
     document.getElementById('rsvp-form').addEventListener('submit', handleRSVPSubmit);
     
-    // Pastikan konten utama tersembunyi saat pertama kali loading (jika CSS gagal)
+    // 4. Setup tombol kontrol musik
+    setupMusicToggle(); 
+    
+    // 5. Pastikan konten utama tersembunyi saat loading pertama
     MAIN_CONTENT.classList.add('hidden');
 });
-
